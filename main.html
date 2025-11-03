@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>百沐源果蔬 - 多用户库存管理系统</title>
+    <title>百沐源果蔬库存管理系统</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,8 +11,6 @@
             --primary-color: #4CAF50;
             --secondary-color: #FF9800;
             --accent-color: #FF5722;
-            --light-color: #F5F5F5;
-            --dark-color: #333;
         }
         
         body {
@@ -271,34 +269,6 @@
             border-radius: 0 0 10px 10px;
         }
         
-        .unit-badge {
-            background-color: #e3f2fd;
-            color: #1976d2;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 5px;
-        }
-        
-        .quantity-input {
-            width: 80px;
-            text-align: center;
-            padding: 0.3rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .btn-quantity {
-            padding: 0.2rem 0.5rem;
-            font-size: 0.8rem;
-        }
-        
         .admin-panel {
             background: #e3f2fd;
             border-radius: 10px;
@@ -361,226 +331,214 @@
             .fruit-actions {
                 flex-direction: column;
             }
-            
-            .quantity-controls {
-                flex-direction: column;
-            }
-            
-            .quantity-input {
-                width: 60px;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 登录界面 -->
-        <div class="login-container" id="loginContainer">
-            <div class="text-center mb-4">
-                <h2><i class="fas fa-apple-alt"></i> 百沐源果蔬管理系统</h2>
-                <p class="text-muted">请输入账号和密码登录</p>
-            </div>
-            
-            <form id="loginForm">
-                <div class="mb-3">
-                    <label for="username" class="form-label">用户名</label>
-                    <input type="text" class="form-control" id="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">密码</label>
-                    <input type="password" class="form-control" id="password" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">登录</button>
-            </form>
-            
-
+    <!-- 登录界面 -->
+    <div class="login-container" id="loginContainer">
+        <div class="text-center mb-4">
+            <h2><i class="fas fa-apple-alt"></i> 百沐源果蔬管理系统</h2>
+            <p class="text-muted">请输入账号和密码登录</p>
         </div>
+        
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">用户名</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">密码</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">登录</button>
+        </form>
+    </div>
 
-        <!-- 主界面 -->
-        <div class="main-container" id="mainContainer">
-            <!-- 顶部标题和用户信息 -->
-            <div class="header text-center">
-                <h1><i class="fas fa-apple-alt"></i> 百沐源果蔬库存管理系统</h1>
-                <p class="mb-0">多用户共享数据，实时同步更新</p>
-                <div class="user-info d-flex justify-content-between align-items-center">
-                    <span>当前用户: <strong id="currentUser">未登录</strong></span>
-                    <div>
-                        <span id="userRole" class="badge bg-primary">用户</span>
-                        <button class="btn btn-sm btn-outline-light ms-2" id="logoutBtn">退出</button>
+    <!-- 主界面 -->
+    <div class="container main-container" id="mainContainer">
+        <!-- 顶部标题和用户信息 -->
+        <div class="header text-center">
+            <h1><i class="fas fa-apple-alt"></i> 百沐源果蔬库存管理系统</h1>
+            <p class="mb-0">多用户共享数据，实时同步更新</p>
+            <div class="user-info d-flex justify-content-between align-items-center">
+                <span>当前用户: <strong id="currentUser">未登录</strong></span>
+                <div>
+                    <span id="userRole" class="badge bg-primary">用户</span>
+                    <button class="btn btn-sm btn-outline-light ms-2" id="logoutBtn">退出</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GitHub配置面板 -->
+        <div class="github-config">
+            <h5><i class="fab fa-github"></i> GitHub同步配置</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="githubToken" class="form-label">GitHub个人访问令牌</label>
+                        <input type="password" class="form-control" id="githubToken" placeholder="输入GitHub访问令牌">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="githubRepo" class="form-label">仓库名称</label>
+                        <input type="text" class="form-control" id="githubRepo" value="369369changer/bmy" placeholder="用户名/仓库名">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="githubBranch" class="form-label">分支</label>
+                        <input type="text" class="form-control" id="githubBranch" value="main" placeholder="分支名称">
                     </div>
                 </div>
             </div>
-            
-            <!-- GitHub配置面板 -->
-            <div class="github-config">
-                <h5><i class="fab fa-github"></i> GitHub同步配置</h5>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="githubToken" class="form-label">GitHub个人访问令牌</label>
-                            <input type="password" class="form-control" id="githubToken" placeholder="输入GitHub访问令牌">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="githubRepo" class="form-label">仓库名称</label>
-                            <input type="text" class="form-control" id="githubRepo" placeholder="用户名/仓库名">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="githubBranch" class="form-label">分支</label>
-                            <input type="text" class="form-control" id="githubBranch" value="main" placeholder="分支名称">
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-primary" id="saveGitHubConfig">保存配置</button>
-                    <button class="btn btn-sm btn-outline-secondary" id="testGitHubConnection">测试连接</button>
-                </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-primary" id="saveGitHubConfig">保存配置</button>
+                <button class="btn btn-sm btn-outline-secondary" id="testGitHubConnection">测试连接</button>
             </div>
-            
-            <!-- 管理员面板（仅管理员可见） -->
-            <div class="admin-panel" id="adminPanel" style="display: none;">
-                <h4><i class="fas fa-user-shield"></i> 管理员面板</h4>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5>用户管理</h5>
-                        <div class="user-list">
-                            <!-- 用户列表将通过JS动态生成 -->
-                        </div>
-                        <button class="btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addUserModal">
-                            <i class="fas fa-plus"></i> 添加用户
-                        </button>
+        </div>
+        
+        <!-- 管理员面板（仅管理员可见） -->
+        <div class="admin-panel" id="adminPanel" style="display: none;">
+            <h4><i class="fas fa-user-shield"></i> 管理员面板</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>用户管理</h5>
+                    <div class="user-list" id="userList">
+                        <!-- 用户列表将通过JS动态生成 -->
                     </div>
-                    <div class="col-md-6">
-                        <h5>数据管理</h5>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-primary" id="syncDataBtn">
-                                <i class="fas fa-sync-alt"></i> 同步数据到GitHub
-                            </button>
-                            <button class="btn btn-outline-secondary" id="loadDataBtn">
-                                <i class="fas fa-download"></i> 从GitHub加载数据
-                            </button>
-                            <button class="btn btn-outline-danger" id="resetDataBtn">
-                                <i class="fas fa-trash"></i> 重置所有数据
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 同步状态 -->
-            <div class="sync-status" id="syncStatus">
-                <span>数据状态: <span id="dataStatus">已同步</span></span>
-                <span>最后同步: <span id="lastSync">刚刚</span></span>
-            </div>
-            
-            <!-- 扫码区域 -->
-            <div class="scan-section">
-                <h3>库存盘点</h3>
-                <p class="text-muted">点击下方按钮开始扫描，或手动输入商品编码和数量</p>
-                
-                <button class="btn scan-btn" id="scanBtn">
-                    <i class="fas fa-barcode"></i>
-                </button>
-                
-                <p id="scanStatus">准备扫描</p>
-                
-                <div class="scan-result" id="scanResult">
-                    <h5><i class="fas fa-check-circle text-success"></i> 扫描成功！</h5>
-                    <p id="scanResultText">已识别商品：苹果，库存已更新</p>
-                </div>
-                
-                <div class="manual-input">
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control" id="manualCode" placeholder="输入商品编码">
-                        <input type="number" class="form-control" id="manualQuantity" placeholder="数量" min="1" value="1">
-                        <button class="btn btn-outline-primary" id="manualSubmit">确认</button>
-                    </div>
-                </div>
-                
-                <div class="mt-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                        <i class="fas fa-plus"></i> 添加新产品
+                    <button class="btn btn-sm btn-primary mt-2" id="addUserBtn">
+                        <i class="fas fa-plus"></i> 添加用户
                     </button>
                 </div>
-            </div>
-            
-            <div class="row">
-                <!-- 库存列表 -->
-                <div class="col-md-8">
-                    <div class="inventory-section">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="mb-0">库存列表</h4>
-                            <div class="search-box">
-                                <i class="fas fa-search"></i>
-                                <input type="text" class="form-control" id="searchInventory" placeholder="搜索商品名称...">
-                            </div>
-                        </div>
-                        
-                        <div id="inventoryList">
-                            <!-- 库存列表将通过JS动态生成 -->
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 统计信息 -->
-                <div class="col-md-4">
-                    <div class="stats-section">
-                        <h4 class="mb-3">统计信息</h4>
-                        
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="stat-card">
-                                    <h3 id="totalItems">0</h3>
-                                    <p>已盘点种类</p>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="stat-card">
-                                    <h3 id="totalCount">0</h3>
-                                    <p>总数量</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card cost-card">
-                            <h3 id="totalCost">¥0</h3>
-                            <p>进货总价</p>
-                        </div>
-                        
-                        <div class="stat-card profit-card">
-                            <h3 id="totalSaleValue">¥0</h3>
-                            <p>售出总价</p>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <h3 id="potentialProfit">¥0</h3>
-                            <p>潜在利润</p>
-                        </div>
-                        
-                        <div class="d-grid gap-2 mt-3">
-                            <button class="btn btn-outline-primary" id="exportBtn">
-                                <i class="fas fa-download"></i> 导出盘点数据
-                            </button>
-                            <button class="btn btn-outline-secondary" id="resetBtn">
-                                <i class="fas fa-redo"></i> 重置盘点
-                            </button>
-                        </div>
+                <div class="col-md-6">
+                    <h5>数据管理</h5>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary" id="syncDataBtn">
+                            <i class="fas fa-sync-alt"></i> 同步数据到GitHub
+                        </button>
+                        <button class="btn btn-outline-secondary" id="loadDataBtn">
+                            <i class="fas fa-download"></i> 从GitHub加载数据
+                        </button>
+                        <button class="btn btn-outline-danger" id="resetDataBtn">
+                            <i class="fas fa-trash"></i> 重置所有数据
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- 同步状态 -->
+        <div class="sync-status" id="syncStatus">
+            <span>数据状态: <span id="dataStatus">已同步</span></span>
+            <span>最后同步: <span id="lastSync">刚刚</span></span>
+        </div>
+        
+        <!-- 扫码区域 -->
+        <div class="scan-section">
+            <h3>库存盘点</h3>
+            <p class="text-muted">点击下方按钮开始扫描，或手动输入商品编码和数量</p>
             
-            <div class="footer">
-                <p>百沐源果蔬库存盘点系统 &copy; 2025 | 版本 3.0</p>
+            <button class="btn scan-btn" id="scanBtn">
+                <i class="fas fa-barcode"></i>
+            </button>
+            
+            <p id="scanStatus">准备扫描</p>
+            
+            <div class="scan-result" id="scanResult">
+                <h5><i class="fas fa-check-circle text-success"></i> 扫描成功！</h5>
+                <p id="scanResultText">已识别商品：苹果，库存已更新</p>
             </div>
+            
+            <div class="manual-input mt-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="manualCode" placeholder="输入商品编码">
+                    <input type="number" class="form-control" id="manualQuantity" placeholder="数量" min="1" value="1">
+                    <button class="btn btn-outline-primary" id="manualSubmit">确认</button>
+                </div>
+            </div>
+            
+            <div class="mt-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="fas fa-plus"></i> 添加新产品
+                </button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- 库存列表 -->
+            <div class="col-md-8">
+                <div class="inventory-section">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="mb-0">库存列表</h4>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" id="searchInventory" placeholder="搜索商品名称...">
+                        </div>
+                    </div>
+                    
+                    <div id="inventoryList">
+                        <!-- 库存列表将通过JS动态生成 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 统计信息 -->
+            <div class="col-md-4">
+                <div class="stats-section">
+                    <h4 class="mb-3">统计信息</h4>
+                    
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <h3 id="totalItems">0</h3>
+                                <p>已盘点种类</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-card">
+                                <h3 id="totalCount">0</h3>
+                                <p>总数量</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card cost-card">
+                        <h3 id="totalCost">¥0</h3>
+                        <p>进货总价</p>
+                    </div>
+                    
+                    <div class="stat-card profit-card">
+                        <h3 id="totalSaleValue">¥0</h3>
+                        <p>售出总价</p>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3 id="potentialProfit">¥0</h3>
+                        <p>潜在利润</p>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-outline-primary" id="exportBtn">
+                            <i class="fas fa-download"></i> 导出盘点数据
+                        </button>
+                        <button class="btn btn-outline-secondary" id="resetBtn">
+                            <i class="fas fa-redo"></i> 重置盘点
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>百沐源果蔬库存盘点系统 &copy; 2025</p>
         </div>
     </div>
 
     <!-- 添加产品模态框 -->
     <div class="modal fade" id="addProductModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">添加新产品</h5>
@@ -692,11 +650,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // GitHub同步管理器
+        // 修复Base64编码问题的GitHub同步管理器
         class GitHubSync {
             constructor() {
                 this.token = localStorage.getItem('githubToken') || '';
-                this.repo = localStorage.getItem('githubRepo') || '';
+                this.repo = localStorage.getItem('githubRepo') || '369369changer/bmy';
                 this.branch = localStorage.getItem('githubBranch') || 'main';
                 this.baseUrl = 'https://api.github.com';
             }
@@ -738,6 +696,52 @@
                 }
             }
             
+            // 修复Base64编码问题 - 处理包含中文的字符串
+            base64Encode(str) {
+                try {
+                    // 使用TextEncoder处理Unicode字符
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(str);
+                    let binary = '';
+                    for (let i = 0; i < data.length; i++) {
+                        binary += String.fromCharCode(data[i]);
+                    }
+                    return btoa(binary);
+                } catch (e) {
+                    // 备用方法：如果TextEncoder不可用，使用encodeURIComponent
+                    try {
+                        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, 
+                            function(match, p1) {
+                                return String.fromCharCode('0x' + p1);
+                            }));
+                    } catch (e2) {
+                        // 最后备用方法
+                        return btoa(unescape(encodeURIComponent(str)));
+                    }
+                }
+            }
+            
+            // 修复Base64解码问题
+            base64Decode(base64) {
+                try {
+                    const binary = atob(base64);
+                    const bytes = new Uint8Array(binary.length);
+                    for (let i = 0; i < binary.length; i++) {
+                        bytes[i] = binary.charCodeAt(i);
+                    }
+                    const decoder = new TextDecoder();
+                    return decoder.decode(bytes);
+                } catch (e) {
+                    try {
+                        return decodeURIComponent(Array.prototype.map.call(atob(base64), function(c) {
+                            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                        }).join(''));
+                    } catch (e2) {
+                        return atob(base64);
+                    }
+                }
+            }
+            
             // 从GitHub获取数据
             async getData() {
                 if (!this.token || !this.repo) {
@@ -755,8 +759,10 @@
                     
                     if (response.ok) {
                         const fileData = await response.json();
-                        const content = JSON.parse(atob(fileData.content));
-                        return { success: true, data: content };
+                        // 使用修复的解码方法
+                        const content = this.base64Decode(fileData.content);
+                        const data = JSON.parse(content);
+                        return { success: true, data: data };
                     } else if (response.status === 404) {
                         // 文件不存在，创建新文件
                         return { success: true, data: { inventory: [], users: {} } };
@@ -793,8 +799,10 @@
                         // 文件可能不存在，继续创建新文件
                     }
                     
+                    // 使用修复的编码方法
+                    const content = this.base64Encode(JSON.stringify(data, null, 2));
+                    
                     // 更新文件
-                    const content = btoa(JSON.stringify(data, null, 2));
                     const response = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json`, {
                         method: 'PUT',
                         headers: {
@@ -940,6 +948,7 @@
                     this.showMainInterface();
                     this.updateUserInfo();
                     this.loadInventoryList();
+                    this.loadUserList();
                     
                     return true;
                 }
@@ -1022,9 +1031,9 @@
                     const itemElement = document.createElement('div');
                     itemElement.className = 'fruit-item';
                     itemElement.innerHTML = `
-                        <img src="${item.image || 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'}" alt="${item.name}" class="fruit-image">
+                        <img src="${item.image || 'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'}" alt="${item.name}" class="fruit-image">
                         <div class="fruit-info">
-                            <div class="fruit-name">${item.name} <span class="unit-badge">${item.unit}</span></div>
+                            <div class="fruit-name">${item.name}</div>
                             <div class="fruit-category">${item.category} · 编码: ${item.id}</div>
                             <div class="fruit-category">进货总价: ¥${costAmount.toFixed(2)} · 售出总价: ¥${saleAmount.toFixed(2)}</div>
                             <div class="fruit-category">最后更新: ${new Date(item.lastUpdated).toLocaleString()} by ${item.updatedBy}</div>
@@ -1035,10 +1044,10 @@
                         </div>
                         <div class="fruit-count">${item.count}</div>
                         <div class="fruit-actions">
-                            <button class="btn btn-outline-primary btn-action edit-product" data-id="${item.id}">
+                            <button class="btn btn-outline-primary btn-sm edit-product" data-id="${item.id}">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-outline-danger btn-action delete-product" data-id="${item.id}">
+                            <button class="btn btn-outline-danger btn-sm delete-product" data-id="${item.id}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -1066,12 +1075,10 @@
             
             // 更新统计信息
             updateStats() {
-                const data = this.inventoryData;
-                const totalItems = data.filter(item => item.count > 0).length;
-                const totalCount = data.reduce((sum, item) => sum + item.count, 0);
-                
-                const totalCost = data.reduce((sum, item) => sum + (item.costPrice * item.count), 0);
-                const totalSaleValue = data.reduce((sum, item) => sum + (item.salePrice * item.count), 0);
+                const totalItems = this.inventoryData.filter(item => item.count > 0).length;
+                const totalCount = this.inventoryData.reduce((sum, item) => sum + item.count, 0);
+                const totalCost = this.inventoryData.reduce((sum, item) => sum + (item.costPrice * item.count), 0);
+                const totalSaleValue = this.inventoryData.reduce((sum, item) => sum + (item.salePrice * item.count), 0);
                 const potentialProfit = totalSaleValue - totalCost;
                 
                 document.getElementById('totalItems').textContent = totalItems;
@@ -1079,61 +1086,6 @@
                 document.getElementById('totalCost').textContent = '¥' + totalCost.toFixed(2);
                 document.getElementById('totalSaleValue').textContent = '¥' + totalSaleValue.toFixed(2);
                 document.getElementById('potentialProfit').textContent = '¥' + potentialProfit.toFixed(2);
-            }
-            
-            // 添加新产品
-            addProduct(productData) {
-                // 生成新ID
-                const newId = '1' + (1000 + this.inventoryData.filter(item => item.category === productData.category).length).toString().substring(1);
-                
-                const newProduct = {
-                    id: newId,
-                    name: productData.name,
-                    category: productData.category,
-                    costPrice: productData.costPrice,
-                    salePrice: productData.salePrice,
-                    unit: productData.unit,
-                    image: productData.image || '',
-                    count: 0,
-                    lastUpdated: new Date().toISOString(),
-                    updatedBy: this.currentUser
-                };
-                
-                this.inventoryData.push(newProduct);
-                this.saveLocalData();
-                this.loadInventoryList();
-                
-                // 关闭模态框
-                bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
-                document.getElementById('addProductForm').reset();
-                
-                alert('新产品添加成功！');
-            }
-            
-            // 编辑产品
-            editProduct(productId) {
-                // 简化编辑功能 - 实际应用中应实现完整编辑界面
-                const product = this.inventoryData.find(item => item.id === productId);
-                if (product) {
-                    const newCount = prompt(`请输入 ${product.name} 的新数量:`, product.count);
-                    if (newCount !== null && !isNaN(newCount)) {
-                        product.count = parseInt(newCount);
-                        product.lastUpdated = new Date().toISOString();
-                        product.updatedBy = this.currentUser;
-                        this.saveLocalData();
-                        this.loadInventoryList();
-                    }
-                }
-            }
-            
-            // 删除产品
-            deleteProduct(productId) {
-                if (confirm('确定要删除这个产品吗？此操作不可撤销。')) {
-                    this.inventoryData = this.inventoryData.filter(item => item.id !== productId);
-                    this.saveLocalData();
-                    this.loadInventoryList();
-                    alert('产品删除成功！');
-                }
             }
             
             // 扫描功能
@@ -1186,6 +1138,7 @@
                     this.saveLocalData();
                     this.loadInventoryList();
                     
+                    // 显示结果
                     const result = document.getElementById('scanResult');
                     const resultText = document.getElementById('scanResultText');
                     
@@ -1204,33 +1157,91 @@
                 }
             }
             
-            // 添加新用户
-            addUser(userData) {
-                if (this.users[userData.username]) {
-                    alert('用户名已存在，请选择其他用户名');
+            // 添加新产品
+            addProduct() {
+                const name = document.getElementById('productName').value.trim();
+                const category = document.getElementById('productCategory').value;
+                const costPrice = parseFloat(document.getElementById('costPrice').value);
+                const salePrice = parseFloat(document.getElementById('salePrice').value);
+                const unit = document.getElementById('productUnit').value;
+                const image = document.getElementById('productImage').value.trim();
+                
+                if (!name || !category || isNaN(costPrice) || isNaN(salePrice) || !unit) {
+                    alert('请填写完整的商品信息');
                     return;
                 }
                 
-                this.users[userData.username] = {
-                    username: userData.username,
-                    password: userData.password,
-                    role: userData.role,
-                    created: new Date().toISOString()
+                if (costPrice <= 0 || salePrice <= 0) {
+                    alert('价格必须大于0');
+                    return;
+                }
+                
+                // 生成新ID
+                let newId;
+                if (category === '水果') {
+                    newId = '1' + (1000 + this.inventoryData.filter(item => item.category === '水果').length).toString().substring(1);
+                } else if (category === '蔬菜') {
+                    newId = '2' + (1000 + this.inventoryData.filter(item => item.category === '蔬菜').length).toString().substring(1);
+                } else if (category === '粮油') {
+                    newId = '3' + (1000 + this.inventoryData.filter(item => item.category === '粮油').length).toString().substring(1);
+                } else if (category === '干果') {
+                    newId = '4' + (1000 + this.inventoryData.filter(item => item.category === '干果').length).toString().substring(1);
+                } else {
+                    newId = '9' + (1000 + this.inventoryData.filter(item => item.category === '其他').length).toString().substring(1);
+                }
+                
+                const newProduct = {
+                    id: newId,
+                    name: name,
+                    category: category,
+                    costPrice: costPrice,
+                    salePrice: salePrice,
+                    unit: unit,
+                    image: image,
+                    count: 0,
+                    lastUpdated: new Date().toISOString(),
+                    updatedBy: this.currentUser
                 };
                 
-                this.saveLocalUsers();
-                this.loadUserList();
+                this.inventoryData.push(newProduct);
+                this.saveLocalData();
+                this.loadInventoryList();
                 
-                // 关闭模态框
-                bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
-                document.getElementById('addUserForm').reset();
+                // 关闭模态框并重置表单
+                bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
+                document.getElementById('addProductForm').reset();
                 
-                alert('新用户添加成功！');
+                alert('新产品添加成功！');
+            }
+            
+            // 编辑产品
+            editProduct(productId) {
+                const product = this.inventoryData.find(item => item.id === productId);
+                if (product) {
+                    const newCount = prompt(`请输入 ${product.name} 的新数量:`, product.count);
+                    if (newCount !== null && !isNaN(newCount)) {
+                        product.count = parseInt(newCount);
+                        product.lastUpdated = new Date().toISOString();
+                        product.updatedBy = this.currentUser;
+                        this.saveLocalData();
+                        this.loadInventoryList();
+                    }
+                }
+            }
+            
+            // 删除产品
+            deleteProduct(productId) {
+                if (confirm('确定要删除这个产品吗？此操作不可撤销。')) {
+                    this.inventoryData = this.inventoryData.filter(item => item.id !== productId);
+                    this.saveLocalData();
+                    this.loadInventoryList();
+                    alert('产品删除成功！');
+                }
             }
             
             // 加载用户列表
             loadUserList() {
-                const userList = document.querySelector('.user-list');
+                const userList = document.getElementById('userList');
                 userList.innerHTML = '';
                 
                 Object.values(this.users).forEach(user => {
@@ -1245,6 +1256,39 @@
                     `;
                     userList.appendChild(userElement);
                 });
+            }
+            
+            // 添加新用户
+            addUser() {
+                const username = document.getElementById('newUsername').value.trim();
+                const password = document.getElementById('newPassword').value;
+                const role = document.getElementById('userRoleSelect').value;
+                
+                if (!username || !password) {
+                    alert('请填写完整的用户信息');
+                    return;
+                }
+                
+                if (this.users[username]) {
+                    alert('用户名已存在，请选择其他用户名');
+                    return;
+                }
+                
+                this.users[username] = {
+                    username: username,
+                    password: password,
+                    role: role,
+                    created: new Date().toISOString()
+                };
+                
+                this.saveLocalUsers();
+                this.loadUserList();
+                
+                // 关闭模态框
+                bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+                document.getElementById('addUserForm').reset();
+                
+                alert('新用户添加成功！');
             }
             
             // 同步数据到GitHub
@@ -1339,6 +1383,45 @@
                 }
             }
             
+            // 导出数据
+            exportData() {
+                const csvContent = "商品名称,商品编码,分类,单位,进货价,卖价,数量,进货总价,售出总价,潜在利润\n" + 
+                    this.inventoryData.map(item => {
+                        const costAmount = item.costPrice * item.count;
+                        const saleAmount = item.salePrice * item.count;
+                        const profit = saleAmount - costAmount;
+                        return `${item.name},${item.id},${item.category},${item.unit},${item.costPrice},${item.salePrice},${item.count},${costAmount.toFixed(2)},${saleAmount.toFixed(2)},${profit.toFixed(2)}`;
+                    }).join("\n");
+                
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement("a");
+                const url = URL.createObjectURL(blob);
+                
+                link.setAttribute("href", url);
+                link.setAttribute("download", `百沐源库存数据_${new Date().toLocaleDateString()}.csv`);
+                link.style.visibility = 'hidden';
+                
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                alert('数据导出成功！');
+            }
+            
+            // 重置盘点
+            resetInventory() {
+                if (confirm('确定要重置所有盘点数据吗？')) {
+                    this.inventoryData.forEach(item => {
+                        item.count = 0;
+                        item.lastUpdated = new Date().toISOString();
+                        item.updatedBy = this.currentUser;
+                    });
+                    this.saveLocalData();
+                    this.loadInventoryList();
+                    alert('盘点数据已重置');
+                }
+            }
+            
             // 设置事件监听器
             setupEventListeners() {
                 // 登录表单提交
@@ -1357,6 +1440,38 @@
                 // 退出按钮
                 document.getElementById('logoutBtn').addEventListener('click', () => {
                     this.logout();
+                });
+                
+                // 保存GitHub配置
+                document.getElementById('saveGitHubConfig').addEventListener('click', () => {
+                    const token = document.getElementById('githubToken').value;
+                    const repo = document.getElementById('githubRepo').value;
+                    const branch = document.getElementById('githubBranch').value;
+                    
+                    if (!token || !repo) {
+                        alert('请填写GitHub令牌和仓库名称');
+                        return;
+                    }
+                    
+                    this.githubSync.saveConfig(token, repo, branch);
+                    alert('GitHub配置已保存！');
+                });
+                
+                // 测试GitHub连接
+                document.getElementById('testGitHubConnection').addEventListener('click', async () => {
+                    const token = document.getElementById('githubToken').value;
+                    const repo = document.getElementById('githubRepo').value;
+                    const branch = document.getElementById('githubBranch').value;
+                    
+                    if (!token || !repo) {
+                        alert('请填写GitHub令牌和仓库名称');
+                        return;
+                    }
+                    
+                    this.githubSync.saveConfig(token, repo, branch);
+                    
+                    const result = await this.githubSync.testConnection();
+                    alert(result.message);
                 });
                 
                 // 扫描按钮
@@ -1382,35 +1497,20 @@
                     }
                 });
                 
-                // 添加产品
+                // 保存产品
                 document.getElementById('saveProduct').addEventListener('click', () => {
-                    const name = document.getElementById('productName').value.trim();
-                    const category = document.getElementById('productCategory').value;
-                    const costPrice = parseFloat(document.getElementById('costPrice').value);
-                    const salePrice = parseFloat(document.getElementById('salePrice').value);
-                    const unit = document.getElementById('productUnit').value;
-                    const image = document.getElementById('productImage').value.trim();
-                    
-                    if (!name || !category || isNaN(costPrice) || isNaN(salePrice) || !unit) {
-                        alert('请填写完整的商品信息');
-                        return;
-                    }
-                    
-                    this.addProduct({ name, category, costPrice, salePrice, unit, image });
+                    this.addProduct();
                 });
                 
-                // 添加用户
+                // 添加用户按钮
+                document.getElementById('addUserBtn').addEventListener('click', () => {
+                    const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
+                    modal.show();
+                });
+                
+                // 保存用户
                 document.getElementById('saveUser').addEventListener('click', () => {
-                    const username = document.getElementById('newUsername').value.trim();
-                    const password = document.getElementById('newPassword').value;
-                    const role = document.getElementById('userRoleSelect').value;
-                    
-                    if (!username || !password) {
-                        alert('请填写完整的用户信息');
-                        return;
-                    }
-                    
-                    this.addUser({ username, password, role });
+                    this.addUser();
                 });
                 
                 // 同步数据到GitHub
@@ -1430,78 +1530,17 @@
                 
                 // 导出数据
                 document.getElementById('exportBtn').addEventListener('click', () => {
-                    const csvContent = "商品名称,商品编码,分类,单位,进货价,卖价,数量,进货总价,售出总价,潜在利润\n" + 
-                        this.inventoryData.map(item => {
-                            const costAmount = item.costPrice * item.count;
-                            const saleAmount = item.salePrice * item.count;
-                            const profit = saleAmount - costAmount;
-                            return `${item.name},${item.id},${item.category},${item.unit},${item.costPrice},${item.salePrice},${item.count},${costAmount.toFixed(2)},${saleAmount.toFixed(2)},${profit.toFixed(2)}`;
-                        }).join("\n");
-                    
-                    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                    const link = document.createElement("a");
-                    const url = URL.createObjectURL(blob);
-                    
-                    link.setAttribute("href", url);
-                    link.setAttribute("download", `百沐源库存数据_${new Date().toLocaleDateString()}.csv`);
-                    link.style.visibility = 'hidden';
-                    
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    
-                    alert('数据导出成功！');
+                    this.exportData();
                 });
                 
                 // 重置盘点
                 document.getElementById('resetBtn').addEventListener('click', () => {
-                    if (confirm('确定要重置所有盘点数据吗？')) {
-                        this.inventoryData.forEach(item => {
-                            item.count = 0;
-                            item.lastUpdated = new Date().toISOString();
-                            item.updatedBy = this.currentUser;
-                        });
-                        this.saveLocalData();
-                        this.loadInventoryList();
-                        alert('盘点数据已重置');
-                    }
-                });
-                
-                // 保存GitHub配置
-                document.getElementById('saveGitHubConfig').addEventListener('click', () => {
-                    const token = document.getElementById('githubToken').value;
-                    const repo = document.getElementById('githubRepo').value;
-                    const branch = document.getElementById('githubBranch').value || 'main';
-                    
-                    if (!token || !repo) {
-                        alert('请填写GitHub令牌和仓库名称');
-                        return;
-                    }
-                    
-                    this.githubSync.saveConfig(token, repo, branch);
-                    alert('GitHub配置已保存！');
-                });
-                
-                // 测试GitHub连接
-                document.getElementById('testGitHubConnection').addEventListener('click', async () => {
-                    const token = document.getElementById('githubToken').value;
-                    const repo = document.getElementById('githubRepo').value;
-                    const branch = document.getElementById('githubBranch').value || 'main';
-                    
-                    if (!token || !repo) {
-                        alert('请填写GitHub令牌和仓库名称');
-                        return;
-                    }
-                    
-                    this.githubSync.saveConfig(token, repo, branch);
-                    
-                    const result = await this.githubSync.testConnection();
-                    alert(result.message);
+                    this.resetInventory();
                 });
                 
                 // 搜索功能
-                document.getElementById('searchInventory').addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
+                document.getElementById('searchInventory').addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
                     const items = document.querySelectorAll('.fruit-item');
                     
                     items.forEach(item => {
