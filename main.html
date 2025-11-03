@@ -202,6 +202,142 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
+        .import-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .import-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .import-steps:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+        
+        .import-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .import-step.active .step-number {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .import-step.completed .step-number {
+            background: #28a745;
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .import-step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .import-content {
+            min-height: 200px;
+        }
+        
+        .template-preview {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #f8f9fa;
+            margin-top: 1rem;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .file-upload-area:hover {
+            border-color: var(--primary-color);
+            background: #f8fff9;
+        }
+        
+        .file-upload-area.dragover {
+            border-color: var(--primary-color);
+            background: #f0fff0;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload-area:hover .upload-icon {
+            color: var(--primary-color);
+        }
+        
+        .import-preview {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .preview-table th,
+        .preview-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        .preview-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .import-result {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
         .modal-lg-custom {
             max-width: 800px;
         }
@@ -247,16 +383,6 @@
             color: white;
         }
         
-        .step-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .step.active .step-label {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
         .product-preview {
             border: 1px solid #dee2e6;
             border-radius: 8px;
@@ -274,9 +400,36 @@
                 font-size: 1.5rem;
             }
             
-            .quick-entry-section {
-                padding: 1.5rem;
+            .import-steps {
+                flex-direction: column;
+                align-items: flex-start;
             }
+            
+            .import-steps:before {
+                display: none;
+            }
+            
+            .import-step {
+                flex-direction: row;
+                margin-bottom: 1rem;
+            }
+            
+            .step-number {
+                margin-right: 1rem;
+                margin-bottom: 0;
+            }
+        }
+        
+        .login-hint {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 1rem;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .login-hint:hover {
+            color: #495057;
         }
     </style>
 </head>
@@ -300,7 +453,11 @@
             <button type="submit" class="btn btn-primary w-100">登录</button>
         </form>
         
-        <div class="mt-3 text-center">
+        <div class="login-hint" id="showHint">
+            <i class="fas fa-info-circle"></i> 点击查看登录提示
+        </div>
+        
+        <div class="mt-3 text-center" id="loginHint" style="display: none;">
             <small class="text-muted">默认账号: admin / 密码: admin123 (管理员)</small><br>
             <small class="text-muted">默认账号: user1 / 密码: user123 (普通用户)</small>
         </div>
@@ -371,6 +528,9 @@
                         </button>
                         <button class="btn btn-outline-secondary" id="loadDataBtn">
                             <i class="fas fa-download"></i> 从GitHub加载数据
+                        </button>
+                        <button class="btn btn-outline-success" id="importDataBtn" data-bs-toggle="modal" data-bs-target="#importModal">
+                            <i class="fas fa-file-import"></i> 一键导入数据
                         </button>
                         <button class="btn btn-outline-danger" id="resetDataBtn">
                             <i class="fas fa-trash"></i> 重置所有数据
@@ -1016,7 +1176,10 @@
                     this.loadInventoryList();
                     
                     // 关闭模态框
-                    bootstrap.Modal.getInstance(document.getElementById('codeEntryModal')).hide();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('codeEntryModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
                     
                     // 清空输入框
                     document.getElementById('productCodeInput').value = '';
@@ -1072,7 +1235,10 @@
                     this.loadInventoryList();
                     
                     // 关闭模态框
-                    bootstrap.Modal.getInstance(document.getElementById('batchEntryModal')).hide();
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('batchEntryModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
                     
                     let message = `成功录入 ${successCount} 个商品`;
                     if (errorCount > 0) {
@@ -1303,7 +1469,10 @@
                 this.loadInventoryList();
                 
                 // 关闭模态框
-                bootstrap.Modal.getInstance(document.getElementById('addProductModal')).hide();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addProductModal'));
+                if (modal) {
+                    modal.hide();
+                }
                 
                 this.showSuccessMessage('新产品添加成功！');
             }
@@ -1527,6 +1696,12 @@
                     }
                 });
                 
+                // 显示/隐藏登录提示
+                document.getElementById('showHint').addEventListener('click', () => {
+                    const hint = document.getElementById('loginHint');
+                    hint.style.display = hint.style.display === 'none' ? 'block' : 'none';
+                });
+                
                 // 退出按钮
                 document.getElementById('logoutBtn').addEventListener('click', () => {
                     this.logout();
@@ -1609,7 +1784,7 @@
                     this.saveProduct();
                 });
                 
-                // 添加用户按钮
+                // 添加用户
                 document.getElementById('addUserBtn').addEventListener('click', () => {
                     this.addUser();
                 });
@@ -1679,16 +1854,10 @@
                 localStorage.setItem('githubToken', token);
                 localStorage.setItem('githubRepo', repo);
                 localStorage.setItem('githubBranch', branch);
-                
-                return true;
             }
             
-            // 测试GitHub连接
+            // 测试连接
             async testConnection() {
-                if (!this.token || !this.repo) {
-                    return { success: false, message: '请先配置GitHub令牌和仓库' };
-                }
-                
                 try {
                     const response = await fetch(`${this.baseUrl}/repos/${this.repo}`, {
                         headers: {
@@ -1698,41 +1867,67 @@
                     });
                     
                     if (response.ok) {
-                        return { success: true, message: 'GitHub连接成功' };
+                        return { success: true, message: 'GitHub连接测试成功！' };
                     } else {
                         return { success: false, message: 'GitHub连接失败，请检查令牌和仓库名称' };
                     }
                 } catch (error) {
-                    return { success: false, message: '网络错误: ' + error.message };
+                    return { success: false, message: 'GitHub连接失败: ' + error.message };
                 }
             }
             
-            // 修复Base64编码问题
-            base64Encode(str) {
+            // 推送数据到GitHub
+            async pushData(data) {
                 try {
-                    return btoa(unescape(encodeURIComponent(str)));
-                } catch (e) {
-                    return btoa(str);
-                }
-            }
-            
-            // 修复Base64解码问题
-            base64Decode(base64) {
-                try {
-                    return decodeURIComponent(escape(atob(base64)));
-                } catch (e) {
-                    return atob(base64);
+                    // 获取文件的SHA（如果存在）
+                    let sha = null;
+                    try {
+                        const fileResponse = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/data.json?ref=${this.branch}`, {
+                            headers: {
+                                'Authorization': `token ${this.token}`,
+                                'Accept': 'application/vnd.github.v3+json'
+                            }
+                        });
+                        
+                        if (fileResponse.ok) {
+                            const fileData = await fileResponse.json();
+                            sha = fileData.sha;
+                        }
+                    } catch (error) {
+                        // 文件不存在，继续创建新文件
+                    }
+                    
+                    // 创建或更新文件
+                    const content = btoa(JSON.stringify(data, null, 2));
+                    const response = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/data.json`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${this.token}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: `库存数据同步 - ${new Date().toLocaleString()}`,
+                            content: content,
+                            branch: this.branch,
+                            sha: sha
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        return { success: true, message: '数据已成功同步到GitHub！' };
+                    } else {
+                        return { success: false, message: '同步失败，请检查权限和配置' };
+                    }
+                } catch (error) {
+                    return { success: false, message: '同步失败: ' + error.message };
                 }
             }
             
             // 从GitHub获取数据
             async getData() {
-                if (!this.token || !this.repo) {
-                    return { success: false, message: '请先配置GitHub令牌和仓库' };
-                }
-                
                 try {
-                    const response = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json?ref=${this.branch}`, {
+                    const response = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/data.json?ref=${this.branch}`, {
                         headers: {
                             'Authorization': `token ${this.token}`,
                             'Accept': 'application/vnd.github.v3+json'
@@ -1741,74 +1936,21 @@
                     
                     if (response.ok) {
                         const fileData = await response.json();
-                        const content = this.base64Decode(fileData.content);
-                        const data = JSON.parse(content);
-                        return { success: true, data: data };
-                    } else if (response.status === 404) {
-                        return { success: true, data: { inventory: [], users: {} } };
+                        const content = atob(fileData.content);
+                        return { success: true, data: JSON.parse(content) };
                     } else {
-                        return { success: false, message: '获取数据失败' };
+                        return { success: false, message: '获取数据失败，文件可能不存在' };
                     }
                 } catch (error) {
-                    return { success: false, message: '网络错误: ' + error.message };
-                }
-            }
-            
-            // 将数据推送到GitHub
-            async pushData(data) {
-                if (!this.token || !this.repo) {
-                    return { success: false, message: '请先配置GitHub令牌和仓库' };
-                }
-                
-                try {
-                    let sha = '';
-                    try {
-                        const getResponse = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json?ref=${this.branch}`, {
-                            headers: {
-                                'Authorization': `token ${this.token}`,
-                                'Accept': 'application/vnd.github.v3+json'
-                            }
-                        });
-                        
-                        if (getResponse.ok) {
-                            const fileData = await getResponse.json();
-                            sha = fileData.sha;
-                        }
-                    } catch (error) {
-                        // 文件可能不存在，继续创建新文件
-                    }
-                    
-                    const content = this.base64Encode(JSON.stringify(data, null, 2));
-                    
-                    const response = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json`, {
-                        method: 'PUT',
-                        headers: {
-                            'Authorization': `token ${this.token}`,
-                            'Accept': 'application/vnd.github.v3+json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            message: `库存数据更新 - ${new Date().toLocaleString()}`,
-                            content: content,
-                            sha: sha,
-                            branch: this.branch
-                        })
-                    });
-                    
-                    if (response.ok) {
-                        return { success: true, message: '数据已成功同步到GitHub' };
-                    } else {
-                        const errorData = await response.json();
-                        return { success: false, message: '同步失败: ' + (errorData.message || '未知错误') };
-                    }
-                } catch (error) {
-                    return { success: false, message: '网络错误: ' + error.message };
+                    return { success: false, message: '获取数据失败: ' + error.message };
                 }
             }
         }
 
         // 初始化系统
-        const inventorySystem = new InventorySystem();
+        document.addEventListener('DOMContentLoaded', function() {
+            window.inventorySystem = new InventorySystem();
+        });
     </script>
 </body>
 </html>
