@@ -35,15 +35,15 @@
       "updatedBy": "admin"
     },
     {
-      "id": "4001",
+      "id": "9000",
       "name": "2025年",
-      "category": "干果",
+      "category": "干活",
       "costPrice": 25,
-      "salePrice": 35,
-      "unit": "袋",
-      "count": 50,
-      "lastUpdated": "2025-11-03T14:44:09.275Z",
-      "updatedBy": "马凯"
+      "salePrice": 25,
+      "unit": "35",
+      "count": 6,
+      "lastUpdated": "2025-11-03T14:52:41.665Z",
+      "updatedBy": "沈文浩"
     }
   ],
   "users": {
@@ -78,6 +78,6 @@
       "created": "2025-11-03T14:21:23.236Z"
     }
   },
-  "lastSync": "2025-11-03T15:13:03.971Z",
+  "lastSync": "2025-11-03T15:54:32.891Z",
   "syncedBy": "admin"
 }
