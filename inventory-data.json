@@ -1,6 +1,48 @@
 {
-  "inventory": [],
-  "users": {},
-  "lastSync": "2025-11-03T14:04:05.626Z",
+  "inventory": [
+    {
+      "id": "1001",
+      "name": "苹果",
+      "category": "水果",
+      "costPrice": 4.5,
+      "salePrice": 6.5,
+      "unit": "斤",
+      "count": 0,
+      "lastUpdated": "2025-11-03T14:15:52.993Z",
+      "updatedBy": "system"
+    },
+    {
+      "id": "1002",
+      "name": "香蕉",
+      "category": "水果",
+      "costPrice": 2.8,
+      "salePrice": 3.8,
+      "unit": "斤",
+      "count": 0,
+      "lastUpdated": "2025-11-03T14:15:52.993Z",
+      "updatedBy": "system"
+    }
+  ],
+  "users": {
+    "12345": {
+      "username": "12345",
+      "password": "1234",
+      "role": "user",
+      "created": "2025-11-03T14:17:39.393Z"
+    },
+    "admin": {
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "created": "2025-11-03T14:15:52.993Z"
+    },
+    "user1": {
+      "username": "user1",
+      "password": "user123",
+      "role": "user",
+      "created": "2025-11-03T14:15:52.993Z"
+    }
+  },
+  "lastSync": "2025-11-03T14:17:43.265Z",
   "syncedBy": "admin"
 }
