@@ -48,6 +48,31 @@
             margin-top: 1rem;
         }
         
+        .github-config {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .admin-panel {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .sync-status {
+            background: #e8f5e9;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
         .scan-section {
             background: white;
             border-radius: 10px;
@@ -78,17 +103,6 @@
             background-color: #3d8b40;
         }
         
-        .scan-btn.scanning {
-            animation: pulse 1.5s infinite;
-            background-color: var(--accent-color);
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
         .inventory-section {
             background: white;
             border-radius: 10px;
@@ -102,15 +116,10 @@
             align-items: center;
             padding: 1rem;
             border-bottom: 1px solid #eee;
-            transition: background-color 0.3s;
         }
         
         .fruit-item:last-child {
             border-bottom: none;
-        }
-        
-        .fruit-item:hover {
-            background-color: #f9f9f9;
         }
         
         .fruit-image {
@@ -143,31 +152,6 @@
             text-align: center;
         }
         
-        .fruit-prices {
-            text-align: right;
-            margin-right: 1rem;
-        }
-        
-        .cost-price {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .sale-price {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        .fruit-actions {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .btn-action {
-            padding: 0.3rem 0.6rem;
-            font-size: 0.8rem;
-        }
-        
         .stats-section {
             background: white;
             border-radius: 10px;
@@ -195,141 +179,27 @@
             font-size: 0.9rem;
         }
         
-        .profit-card {
-            background-color: #e8f5e9;
-            border-left: 4px solid var(--primary-color);
+        .error-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1050;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .cost-card {
-            background-color: #fff3e0;
-            border-left: 4px solid var(--secondary-color);
-        }
-        
-        .scan-result {
-            background-color: #e8f5e9;
+        .conflict-resolution {
+            background: #fff3e0;
             border-radius: 8px;
             padding: 1rem;
             margin-top: 1rem;
-            display: none;
-        }
-        
-        .scan-result.show {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 1rem;
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-        
-        .manual-input {
-            margin-top: 1rem;
-        }
-        
-        .search-box {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-        
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 12px;
-            color: #999;
-        }
-        
-        .search-box input {
-            padding-left: 40px;
-        }
-        
-        .modal-content {
-            border-radius: 10px;
-            border: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .modal-header {
-            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
-            color: white;
-            border-radius: 10px 10px 0 0;
-            border-bottom: none;
-        }
-        
-        .modal-footer {
-            border-top: 1px solid #eee;
-            border-radius: 0 0 10px 10px;
-        }
-        
-        .admin-panel {
-            background: #e3f2fd;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid #2196F3;
-        }
-        
-        .user-list {
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .user-item:last-child {
-            border-bottom: none;
-        }
-        
-        .sync-status {
-            background: #e8f5e9;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin-top: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .github-config {
-            background: #f5f5f5;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
         }
         
         @media (max-width: 768px) {
             .container {
                 padding: 0 10px;
-            }
-            
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .scan-section {
-                padding: 1.5rem;
-            }
-            
-            .fruit-prices {
-                display: none;
-            }
-            
-            .fruit-actions {
-                flex-direction: column;
             }
         }
     </style>
@@ -353,6 +223,11 @@
             </div>
             <button type="submit" class="btn btn-primary w-100">登录</button>
         </form>
+        
+        <div class="mt-3 text-center">
+            <small class="text-muted">默认账号: admin / 密码: admin123 (管理员)</small><br>
+            <small class="text-muted">默认账号: user1 / 密码: user123 (普通用户)</small>
+        </div>
     </div>
 
     <!-- 主界面 -->
@@ -446,7 +321,7 @@
             
             <p id="scanStatus">准备扫描</p>
             
-            <div class="scan-result" id="scanResult">
+            <div class="scan-result" id="scanResult" style="display: none;">
                 <h5><i class="fas fa-check-circle text-success"></i> 扫描成功！</h5>
                 <p id="scanResultText">已识别商品：苹果，库存已更新</p>
             </div>
@@ -473,7 +348,6 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="mb-0">库存列表</h4>
                         <div class="search-box">
-                            <i class="fas fa-search"></i>
                             <input type="text" class="form-control" id="searchInventory" placeholder="搜索商品名称...">
                         </div>
                     </div>
@@ -504,12 +378,12 @@
                         </div>
                     </div>
                     
-                    <div class="stat-card cost-card">
+                    <div class="stat-card">
                         <h3 id="totalCost">¥0</h3>
                         <p>进货总价</p>
                     </div>
                     
-                    <div class="stat-card profit-card">
+                    <div class="stat-card">
                         <h3 id="totalSaleValue">¥0</h3>
                         <p>售出总价</p>
                     </div>
@@ -534,6 +408,22 @@
         <div class="footer">
             <p>百沐源果蔬库存盘点系统 &copy; 2025</p>
         </div>
+    </div>
+
+    <!-- 错误提示框 -->
+    <div class="error-alert alert alert-danger d-none" id="errorAlert">
+        <h5><i class="fas fa-exclamation-triangle"></i> 同步失败</h5>
+        <p id="errorMessage">错误信息将显示在这里</p>
+        <div class="conflict-resolution" id="conflictResolution" style="display: none;">
+            <h6>冲突解决方案</h6>
+            <p>检测到数据冲突，请选择解决方案：</p>
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary" id="useLocalData">使用本地数据覆盖远程</button>
+                <button class="btn btn-outline-secondary" id="useRemoteData">使用远程数据覆盖本地</button>
+                <button class="btn btn-outline-info" id="mergeData">合并数据（推荐）</button>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-3" id="closeErrorBtn">确定</button>
     </div>
 
     <!-- 添加产品模态框 -->
@@ -613,50 +503,16 @@
         </div>
     </div>
 
-    <!-- 添加用户模态框 -->
-    <div class="modal fade" id="addUserModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">添加新用户</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addUserForm">
-                        <div class="mb-3">
-                            <label for="newUsername" class="form-label">用户名</label>
-                            <input type="text" class="form-control" id="newUsername" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="newPassword" class="form-label">密码</label>
-                            <input type="password" class="form-control" id="newPassword" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="userRoleSelect" class="form-label">角色</label>
-                            <select class="form-select" id="userRoleSelect" required>
-                                <option value="user">普通用户</option>
-                                <option value="admin">管理员</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="saveUser">保存用户</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // 修复Base64编码问题的GitHub同步管理器
+        // 修复SHA不匹配问题的GitHub同步管理器
         class GitHubSync {
             constructor() {
                 this.token = localStorage.getItem('githubToken') || '';
                 this.repo = localStorage.getItem('githubRepo') || '369369changer/bmy';
                 this.branch = localStorage.getItem('githubBranch') || 'main';
                 this.baseUrl = 'https://api.github.com';
+                this.lastKnownSHA = null;
             }
             
             // 保存GitHub配置
@@ -742,7 +598,7 @@
                 }
             }
             
-            // 从GitHub获取数据
+            // 从GitHub获取数据（包含SHA值）
             async getData() {
                 if (!this.token || !this.repo) {
                     return { success: false, message: '请先配置GitHub令牌和仓库' };
@@ -759,13 +615,15 @@
                     
                     if (response.ok) {
                         const fileData = await response.json();
+                        // 保存SHA值
+                        this.lastKnownSHA = fileData.sha;
                         // 使用修复的解码方法
                         const content = this.base64Decode(fileData.content);
                         const data = JSON.parse(content);
-                        return { success: true, data: data };
+                        return { success: true, data: data, sha: fileData.sha };
                     } else if (response.status === 404) {
                         // 文件不存在，创建新文件
-                        return { success: true, data: { inventory: [], users: {} } };
+                        return { success: true, data: { inventory: [], users: {} }, sha: null };
                     } else {
                         return { success: false, message: '获取数据失败' };
                     }
@@ -774,29 +632,33 @@
                 }
             }
             
-            // 将数据推送到GitHub
-            async pushData(data) {
+            // 将数据推送到GitHub（处理SHA不匹配问题）
+            async pushData(data, forceOverwrite = false) {
                 if (!this.token || !this.repo) {
                     return { success: false, message: '请先配置GitHub令牌和仓库' };
                 }
                 
                 try {
-                    // 获取文件SHA（如果存在）
-                    let sha = '';
-                    try {
-                        const getResponse = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json?ref=${this.branch}`, {
-                            headers: {
-                                'Authorization': `token ${this.token}`,
-                                'Accept': 'application/vnd.github.v3+json'
+                    let sha = this.lastKnownSHA;
+                    
+                    // 如果不强制覆盖，先获取最新的SHA值
+                    if (!forceOverwrite) {
+                        try {
+                            const getResponse = await fetch(`${this.baseUrl}/repos/${this.repo}/contents/inventory-data.json?ref=${this.branch}`, {
+                                headers: {
+                                    'Authorization': `token ${this.token}`,
+                                    'Accept': 'application/vnd.github.v3+json'
+                                }
+                            });
+                            
+                            if (getResponse.ok) {
+                                const fileData = await getResponse.json();
+                                sha = fileData.sha;
+                                this.lastKnownSHA = sha;
                             }
-                        });
-                        
-                        if (getResponse.ok) {
-                            const fileData = await getResponse.json();
-                            sha = fileData.sha;
+                        } catch (error) {
+                            // 文件可能不存在，继续创建新文件
                         }
-                    } catch (error) {
-                        // 文件可能不存在，继续创建新文件
                     }
                     
                     // 使用修复的编码方法
@@ -819,14 +681,38 @@
                     });
                     
                     if (response.ok) {
+                        const result = await response.json();
+                        this.lastKnownSHA = result.content.sha;
                         return { success: true, message: '数据已成功同步到GitHub' };
                     } else {
                         const errorData = await response.json();
+                        
+                        // 检查是否是SHA不匹配错误
+                        if (errorData.message && errorData.message.includes('does not match')) {
+                            return { 
+                                success: false, 
+                                message: 'SHA不匹配错误: ' + errorData.message,
+                                isSHAError: true,
+                                remoteSHA: this.extractSHAFromError(errorData.message)
+                            };
+                        }
+                        
                         return { success: false, message: '同步失败: ' + (errorData.message || '未知错误') };
                     }
                 } catch (error) {
                     return { success: false, message: '网络错误: ' + error.message };
                 }
+            }
+            
+            // 从错误消息中提取SHA值
+            extractSHAFromError(errorMessage) {
+                const match = errorMessage.match(/does not match ([a-f0-9]+)/);
+                return match ? match[1] : null;
+            }
+            
+            // 强制覆盖远程数据（解决SHA冲突）
+            async forcePushData(data) {
+                return this.pushData(data, true);
             }
         }
 
@@ -839,6 +725,7 @@
                 this.currentUser = null;
                 this.isAdmin = false;
                 this.lastSyncTime = null;
+                this.remoteData = null;
                 
                 this.initialize();
             }
@@ -1014,6 +901,30 @@
                 }
             }
             
+            // 显示错误消息
+            showError(message, isSHAError = false, remoteSHA = null) {
+                const errorAlert = document.getElementById('errorAlert');
+                const errorMessage = document.getElementById('errorMessage');
+                const conflictResolution = document.getElementById('conflictResolution');
+                
+                errorMessage.textContent = message;
+                
+                if (isSHAError) {
+                    conflictResolution.style.display = 'block';
+                    // 保存远程SHA值用于冲突解决
+                    this.remoteSHA = remoteSHA;
+                } else {
+                    conflictResolution.style.display = 'none';
+                }
+                
+                errorAlert.classList.remove('d-none');
+            }
+            
+            // 隐藏错误消息
+            hideError() {
+                document.getElementById('errorAlert').classList.add('d-none');
+            }
+            
             // 加载库存列表
             loadInventoryList() {
                 const inventoryList = document.getElementById('inventoryList');
@@ -1037,10 +948,6 @@
                             <div class="fruit-category">${item.category} · 编码: ${item.id}</div>
                             <div class="fruit-category">进货总价: ¥${costAmount.toFixed(2)} · 售出总价: ¥${saleAmount.toFixed(2)}</div>
                             <div class="fruit-category">最后更新: ${new Date(item.lastUpdated).toLocaleString()} by ${item.updatedBy}</div>
-                        </div>
-                        <div class="fruit-prices">
-                            <div class="cost-price">进价: ¥${item.costPrice}/${item.unit}</div>
-                            <div class="sale-price">售价: ¥${item.salePrice}/${item.unit}</div>
                         </div>
                         <div class="fruit-count">${item.count}</div>
                         <div class="fruit-actions">
@@ -1111,10 +1018,10 @@
                 const resultText = document.getElementById('scanResultText');
                 
                 resultText.innerHTML = `已识别商品：${randomItem.name}<br>当前库存：${randomItem.count}${randomItem.unit}`;
-                result.classList.add('show');
+                result.style.display = 'block';
                 
                 setTimeout(() => {
-                    result.classList.remove('show');
+                    result.style.display = 'none';
                 }, 3000);
             }
             
@@ -1143,14 +1050,14 @@
                     const resultText = document.getElementById('scanResultText');
                     
                     resultText.innerHTML = `已更新商品：${item.name}<br>当前库存：${item.count}${item.unit}`;
-                    result.classList.add('show');
+                    result.style.display = 'block';
                     
                     // 清空输入框
                     document.getElementById('manualCode').value = '';
                     document.getElementById('manualQuantity').value = '1';
                     
                     setTimeout(() => {
-                        result.classList.remove('show');
+                        result.style.display = 'none';
                     }, 3000);
                 } else {
                     alert('未找到对应商品，请检查编码是否正确');
@@ -1260,14 +1167,14 @@
             
             // 添加新用户
             addUser() {
-                const username = document.getElementById('newUsername').value.trim();
-                const password = document.getElementById('newPassword').value;
-                const role = document.getElementById('userRoleSelect').value;
+                const username = prompt('请输入新用户名:');
+                if (!username) return;
                 
-                if (!username || !password) {
-                    alert('请填写完整的用户信息');
-                    return;
-                }
+                const password = prompt('请输入密码:');
+                if (!password) return;
+                
+                const role = prompt('请输入角色 (user/admin):', 'user');
+                if (!role) return;
                 
                 if (this.users[username]) {
                     alert('用户名已存在，请选择其他用户名');
@@ -1284,17 +1191,13 @@
                 this.saveLocalUsers();
                 this.loadUserList();
                 
-                // 关闭模态框
-                bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
-                document.getElementById('addUserForm').reset();
-                
                 alert('新用户添加成功！');
             }
             
             // 同步数据到GitHub
             async syncToGitHub() {
                 if (!this.githubSync.token || !this.githubSync.repo) {
-                    alert('请先配置GitHub令牌和仓库');
+                    this.showError('请先配置GitHub令牌和仓库');
                     return;
                 }
                 
@@ -1316,10 +1219,14 @@
                         this.updateSyncStatus();
                         alert(result.message);
                     } else {
-                        alert('同步失败: ' + result.message);
+                        if (result.isSHAError) {
+                            this.showError(result.message, true, result.remoteSHA);
+                        } else {
+                            this.showError(result.message);
+                        }
                     }
                 } catch (error) {
-                    alert('同步失败: ' + error.message);
+                    this.showError('同步失败: ' + error.message);
                 } finally {
                     document.getElementById('syncDataBtn').disabled = false;
                     document.getElementById('syncDataBtn').innerHTML = '<i class="fas fa-sync-alt"></i> 同步数据到GitHub';
@@ -1329,7 +1236,7 @@
             // 从GitHub加载数据
             async loadFromGitHub() {
                 if (!this.githubSync.token || !this.githubSync.repo) {
-                    alert('请先配置GitHub令牌和仓库');
+                    this.showError('请先配置GitHub令牌和仓库');
                     return;
                 }
                 
@@ -1354,14 +1261,164 @@
                         this.loadUserList();
                         alert('数据已从GitHub加载成功！');
                     } else {
-                        alert('加载失败: ' + result.message);
+                        this.showError(result.message);
                     }
                 } catch (error) {
-                    alert('加载失败: ' + error.message);
+                    this.showError('加载失败: ' + error.message);
                 } finally {
                     document.getElementById('loadDataBtn').disabled = false;
                     document.getElementById('loadDataBtn').innerHTML = '<i class="fas fa-download"></i> 从GitHub加载数据';
                 }
+            }
+            
+            // 解决SHA冲突 - 使用本地数据覆盖远程
+            async resolveConflictWithLocal() {
+                try {
+                    const data = {
+                        inventory: this.inventoryData,
+                        users: this.users,
+                        lastSync: new Date().toISOString(),
+                        syncedBy: this.currentUser,
+                        conflictResolved: 'local'
+                    };
+                    
+                    const result = await this.githubSync.forcePushData(data);
+                    
+                    if (result.success) {
+                        this.lastSyncTime = new Date();
+                        this.updateSyncStatus();
+                        this.hideError();
+                        alert('冲突已解决，本地数据已覆盖远程数据');
+                    } else {
+                        this.showError('冲突解决失败: ' + result.message);
+                    }
+                } catch (error) {
+                    this.showError('冲突解决失败: ' + error.message);
+                }
+            }
+            
+            // 解决SHA冲突 - 使用远程数据覆盖本地
+            async resolveConflictWithRemote() {
+                try {
+                    const result = await this.githubSync.getData();
+                    
+                    if (result.success) {
+                        if (result.data.inventory) {
+                            this.inventoryData = result.data.inventory;
+                            this.saveLocalData();
+                        }
+                        
+                        if (result.data.users) {
+                            this.users = result.data.users;
+                            this.saveLocalUsers();
+                        }
+                        
+                        this.loadInventoryList();
+                        this.loadUserList();
+                        this.hideError();
+                        alert('冲突已解决，远程数据已覆盖本地数据');
+                    } else {
+                        this.showError('加载远程数据失败: ' + result.message);
+                    }
+                } catch (error) {
+                    this.showError('加载远程数据失败: ' + error.message);
+                }
+            }
+            
+            // 解决SHA冲突 - 合并数据
+            async resolveConflictWithMerge() {
+                try {
+                    const remoteResult = await this.githubSync.getData();
+                    
+                    if (remoteResult.success) {
+                        // 合并逻辑：以最新修改的数据为准
+                        const mergedInventory = this.mergeInventoryData(this.inventoryData, remoteResult.data.inventory);
+                        const mergedUsers = this.mergeUserData(this.users, remoteResult.data.users);
+                        
+                        this.inventoryData = mergedInventory;
+                        this.users = mergedUsers;
+                        
+                        this.saveLocalData();
+                        this.saveLocalUsers();
+                        this.loadInventoryList();
+                        this.loadUserList();
+                        
+                        // 同步合并后的数据到GitHub
+                        const data = {
+                            inventory: this.inventoryData,
+                            users: this.users,
+                            lastSync: new Date().toISOString(),
+                            syncedBy: this.currentUser,
+                            conflictResolved: 'merge'
+                        };
+                        
+                        const syncResult = await this.githubSync.forcePushData(data);
+                        
+                        if (syncResult.success) {
+                            this.lastSyncTime = new Date();
+                            this.updateSyncStatus();
+                            this.hideError();
+                            alert('冲突已解决，数据已成功合并并同步到GitHub');
+                        } else {
+                            this.showError('合并数据同步失败: ' + syncResult.message);
+                        }
+                    } else {
+                        this.showError('加载远程数据失败: ' + remoteResult.message);
+                    }
+                } catch (error) {
+                    this.showError('合并数据失败: ' + error.message);
+                }
+            }
+            
+            // 合并库存数据
+            mergeInventoryData(localData, remoteData) {
+                const merged = [...localData];
+                const remoteMap = new Map();
+                
+                // 创建远程数据的映射
+                remoteData.forEach(item => {
+                    remoteMap.set(item.id, item);
+                });
+                
+                // 合并数据
+                localData.forEach(localItem => {
+                    const remoteItem = remoteMap.get(localItem.id);
+                    if (remoteItem) {
+                        // 如果远程数据更新，使用远程数据
+                        const localDate = new Date(localItem.lastUpdated);
+                        const remoteDate = new Date(remoteItem.lastUpdated);
+                        
+                        if (remoteDate > localDate) {
+                            const index = merged.findIndex(item => item.id === localItem.id);
+                            if (index !== -1) {
+                                merged[index] = remoteItem;
+                            }
+                        }
+                        // 从映射中移除已处理的项目
+                        remoteMap.delete(localItem.id);
+                    }
+                });
+                
+                // 添加本地没有的远程项目
+                remoteMap.forEach(item => {
+                    merged.push(item);
+                });
+                
+                return merged;
+            }
+            
+            // 合并用户数据
+            mergeUserData(localData, remoteData) {
+                const merged = { ...localData };
+                
+                // 添加或更新远程用户数据
+                Object.keys(remoteData).forEach(username => {
+                    if (!merged[username] || new Date(remoteData[username].created) > new Date(merged[username].created)) {
+                        merged[username] = remoteData[username];
+                    }
+                });
+                
+                return merged;
             }
             
             // 重置所有数据
@@ -1502,14 +1559,8 @@
                     this.addProduct();
                 });
                 
-                // 添加用户按钮
+                // 添加用户
                 document.getElementById('addUserBtn').addEventListener('click', () => {
-                    const modal = new bootstrap.Modal(document.getElementById('addUserModal'));
-                    modal.show();
-                });
-                
-                // 保存用户
-                document.getElementById('saveUser').addEventListener('click', () => {
                     this.addUser();
                 });
                 
@@ -1536,6 +1587,24 @@
                 // 重置盘点
                 document.getElementById('resetBtn').addEventListener('click', () => {
                     this.resetInventory();
+                });
+                
+                // 关闭错误提示
+                document.getElementById('closeErrorBtn').addEventListener('click', () => {
+                    this.hideError();
+                });
+                
+                // 冲突解决按钮
+                document.getElementById('useLocalData').addEventListener('click', () => {
+                    this.resolveConflictWithLocal();
+                });
+                
+                document.getElementById('useRemoteData').addEventListener('click', () => {
+                    this.resolveConflictWithRemote();
+                });
+                
+                document.getElementById('mergeData').addEventListener('click', () => {
+                    this.resolveConflictWithMerge();
                 });
                 
                 // 搜索功能
