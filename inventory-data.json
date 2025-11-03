@@ -53,8 +53,20 @@
       "password": "user123",
       "role": "user",
       "created": "2025-11-03T14:15:52.993Z"
+    },
+    "马凯": {
+      "username": "马凯",
+      "password": "123",
+      "role": "user",
+      "created": "2025-11-03T14:21:06.290Z"
+    },
+    "沈文浩": {
+      "username": "沈文浩",
+      "password": "123",
+      "role": "user",
+      "created": "2025-11-03T14:21:23.236Z"
     }
   },
-  "lastSync": "2025-11-03T14:20:42.683Z",
+  "lastSync": "2025-11-03T14:21:24.869Z",
   "syncedBy": "admin"
 }
