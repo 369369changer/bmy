@@ -33,6 +33,17 @@
       "count": 50,
       "lastUpdated": "2025-11-03T14:18:27.093Z",
       "updatedBy": "admin"
+    },
+    {
+      "id": "4001",
+      "name": "2025年",
+      "category": "干果",
+      "costPrice": 25,
+      "salePrice": 35,
+      "unit": "袋",
+      "count": 50,
+      "lastUpdated": "2025-11-03T14:44:09.275Z",
+      "updatedBy": "马凯"
     }
   ],
   "users": {
@@ -67,6 +78,6 @@
       "created": "2025-11-03T14:21:23.236Z"
     }
   },
-  "lastSync": "2025-11-03T14:42:40.501Z",
+  "lastSync": "2025-11-03T14:54:22.797Z",
   "syncedBy": "admin"
 }
