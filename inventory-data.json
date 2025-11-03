@@ -21,6 +21,18 @@
       "count": 0,
       "lastUpdated": "2025-11-03T14:15:52.993Z",
       "updatedBy": "system"
+    },
+    {
+      "id": "4000",
+      "name": "马凯个狗孙子",
+      "category": "干果",
+      "costPrice": 250,
+      "salePrice": 380,
+      "unit": "斤",
+      "image": "",
+      "count": 50,
+      "lastUpdated": "2025-11-03T14:18:27.093Z",
+      "updatedBy": "admin"
     }
   ],
   "users": {
@@ -43,6 +55,6 @@
       "created": "2025-11-03T14:15:52.993Z"
     }
   },
-  "lastSync": "2025-11-03T14:17:43.265Z",
+  "lastSync": "2025-11-03T14:20:42.683Z",
   "syncedBy": "admin"
 }
