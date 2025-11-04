@@ -1,83 +1,57 @@
-{
-  "inventory": [
-    {
-      "id": "1001",
-      "name": "苹果",
-      "category": "水果",
-      "costPrice": 4.5,
-      "salePrice": 6.5,
-      "unit": "斤",
-      "count": 0,
-      "lastUpdated": "2025-11-03T14:15:52.993Z",
-      "updatedBy": "system"
-    },
-    {
-      "id": "1002",
-      "name": "香蕉",
-      "category": "水果",
-      "costPrice": 2.8,
-      "salePrice": 3.8,
-      "unit": "斤",
-      "count": 0,
-      "lastUpdated": "2025-11-03T14:15:52.993Z",
-      "updatedBy": "system"
-    },
-    {
-      "id": "4000",
-      "name": "马凯个狗孙子",
-      "category": "干果",
-      "costPrice": 250,
-      "salePrice": 380,
-      "unit": "斤",
-      "image": "",
-      "count": 50,
-      "lastUpdated": "2025-11-03T14:18:27.093Z",
-      "updatedBy": "admin"
-    },
-    {
-      "id": "9000",
-      "name": "2025年",
-      "category": "干活",
-      "costPrice": 25,
-      "salePrice": 25,
-      "unit": "35",
-      "count": 6,
-      "lastUpdated": "2025-11-03T14:52:41.665Z",
-      "updatedBy": "沈文浩"
-    }
-  ],
-  "users": {
-    "12345": {
-      "username": "12345",
-      "password": "1234",
-      "role": "user",
-      "created": "2025-11-03T14:17:39.393Z"
-    },
-    "admin": {
-      "username": "admin",
-      "password": "admin123",
-      "role": "admin",
-      "created": "2025-11-03T14:15:52.993Z"
-    },
-    "user1": {
-      "username": "user1",
-      "password": "user123",
-      "role": "user",
-      "created": "2025-11-03T14:15:52.993Z"
-    },
-    "马凯": {
-      "username": "马凯",
-      "password": "123",
-      "role": "user",
-      "created": "2025-11-03T14:21:06.290Z"
-    },
-    "沈文浩": {
-      "username": "沈文浩",
-      "password": "123",
-      "role": "user",
-      "created": "2025-11-03T14:21:23.236Z"
-    }
+[
+  {
+    "id": "1001",
+    "name": "苹果",
+    "category": "水果",
+    "costPrice": 4.5,
+    "salePrice": 6.5,
+    "unit": "斤",
+    "count": 0,
+    "lastUpdated": "2025-11-04T04:46:42.138Z",
+    "updatedBy": "system"
   },
-  "lastSync": "2025-11-03T15:54:32.891Z",
-  "syncedBy": "admin"
-}
+  {
+    "id": "1002",
+    "name": "香蕉",
+    "category": "水果",
+    "costPrice": 2.8,
+    "salePrice": 3.8,
+    "unit": "斤",
+    "count": 0,
+    "lastUpdated": "2025-11-04T04:46:42.138Z",
+    "updatedBy": "system"
+  },
+  {
+    "id": "2001",
+    "name": "白菜",
+    "category": "蔬菜",
+    "costPrice": 1.5,
+    "salePrice": 2.5,
+    "unit": "斤",
+    "count": 0,
+    "lastUpdated": "2025-11-04T04:46:42.138Z",
+    "updatedBy": "system"
+  },
+  {
+    "id": "3001",
+    "name": "大米",
+    "category": "粮油",
+    "costPrice": 3.2,
+    "salePrice": 4.5,
+    "unit": "斤",
+    "count": 0,
+    "lastUpdated": "2025-11-04T04:46:42.138Z",
+    "updatedBy": "system"
+  },
+  {
+    "id": "4001",
+    "name": "核桃",
+    "category": "干果",
+    "costPrice": 15.8,
+    "salePrice": 22.5,
+    "unit": "斤",
+    "count": 0,
+    "lastUpdated": "2025-11-04T04:46:42.138Z",
+    "updatedBy": "system"
+  }
+]
